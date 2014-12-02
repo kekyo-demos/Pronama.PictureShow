@@ -1,0 +1,34 @@
+﻿<Page
+	x:Class="Pronama.PictureShow.MainPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:pronama="using:Pronama.PictureShow"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	mc:Ignorable="d">
+
+	<Page.Resources>
+		<pronama:ScrapingViewerViewModel x:Key="viewModel" />
+	</Page.Resources>
+
+	<Grid DataContext="{StaticResource viewModel}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Button Grid.Row="0"
+			Command="{Binding FireLoad}"
+			Content="プロ生ちゃん！"
+			IsEnabled="{Binding IsReady}" />
+		<ListBox Grid.Row="1" ItemsSource="{Binding Images}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Image Source="{Binding ImageData}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</Page>
